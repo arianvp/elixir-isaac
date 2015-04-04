@@ -22,6 +22,8 @@ defmodule Isaac.Mixfile do
      version: "0.0.1",
      elixir: "~> 1.0",
      compilers: [:isaac, :elixir, :app],
+     description: description,
+     package: package,
      deps: deps]
   end
 
@@ -32,16 +34,25 @@ defmodule Isaac.Mixfile do
     [applications: [:logger]]
   end
 
-  # Dependencies can be Hex packages:
-  #
-  #   {:mydep, "~> 0.3.0"}
-  #
-  # Or git/path repositories:
-  #
-  #   {:mydep, git: "https://github.com/elixir-lang/mydep.git", tag: "0.1.0"}
-  #
-  # Type `mix help deps` for more examples and options
   defp deps do
     [{:isaac_c, github: "arianvp/isaac", tag: "0.0.4", app: false}]
+  end
+
+  defp description do
+    """
+    Isaac is an elixir module for the [ISAAC Stream Cipher](http://burtleburtle.net/bob/rand/isaacafa.html)
+
+    It wraps around  https://github.com/arianvp/ISAAC which is a port of the ISAAC stream cipher to platforms which have words bigger than 32 bits.
+
+    """
+  end
+
+  defp package do
+    [
+      files: ["src", "lib", "priv", "mix.exs", "README*", "LICENSE*"],
+      contributors: ["Arian van Putten"],
+      licenses: ["GNU GPL V3.0"],
+      links: %{"Github" => "https://github.com/arianvp/elixir-isaac"}
+    ]
   end
 end

@@ -1,5 +1,6 @@
 #include "rand.h"
 #include "erl_nif.h"
+#include <string.h>
 
 static ErlNifResourceType *RES_TYPE;
 static ERL_NIF_TERM atom_ok;
@@ -16,6 +17,7 @@ init(ErlNifEnv *env, int argc, const ERL_NIF_TERM argv[])
 
   ctx = enif_alloc_resource(RES_TYPE, sizeof(struct randctx));
   seed = enif_alloc_resource(RES_TYPE, sizeof(int32_t)*256);
+  memset(seed,0,256);
 
 
   if (argc != 1)
@@ -23,12 +25,13 @@ init(ErlNifEnv *env, int argc, const ERL_NIF_TERM argv[])
     return enif_make_badarg(env);
   }
 
-  list = argv[0];
 
+  list = argv[0];
   if (!enif_is_list(env, list))
   {
     return enif_make_badarg(env);
   }
+  
 
   /* We traverse the linked list until nil or 255 elems visited.  */
 
