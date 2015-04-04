@@ -41,6 +41,6 @@ defmodule Isaac.Mixfile do
   #
   # Type `mix help deps` for more examples and options
   defp deps do
-    [{:isaac_c, github: "arianvp/isaac", app: false}]
+    [{:isaac_c, github: "arianvp/isaac", tag: "0.0.3", app: false}]
   end
 end

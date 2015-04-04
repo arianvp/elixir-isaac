@@ -29,7 +29,7 @@ init(ErlNifEnv *env, int argc, const ERL_NIF_TERM argv[])
 
   head = argv[0];
   /* We traverse the linked list until nil or 255 elems visited.  */
-  for (i = 0; i < 255 && enif_get_list_cell(env, head, &head, &tail); i++)
+  for (i = 0; i < 256 && enif_get_list_cell(env, head, &head, &tail); i++)
   {
 
     if(!enif_get_int(env, head, &seed_part))
