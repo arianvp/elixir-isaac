@@ -1,1 +1,1 @@
-%{"isaac_c": {:git, "git://github.com/arianvp/isaac.git", "a785cc6ed6a692cf807da25c32239854a1864724", [tag: "0.0.3"]}}
+%{"isaac_c": {:git, "git://github.com/arianvp/isaac.git", "01253c7f6b141578d20ddb1d4de23c3cc4b6322c", [tag: "0.0.4"]}}

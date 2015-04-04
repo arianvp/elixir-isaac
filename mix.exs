@@ -1,6 +1,6 @@
 defmodule Mix.Tasks.Compile.Isaac do
 
-  @shortdoc "Compiles Hoedown"
+  @shortdoc "Compiles Isaac"
 
   def run(_) do
     if match? {:win32, _}, :os.type do
@@ -21,6 +21,7 @@ defmodule Isaac.Mixfile do
     [app: :isaac,
      version: "0.0.1",
      elixir: "~> 1.0",
+     compilers: [:isaac, :elixir, :app],
      deps: deps]
   end
 
@@ -41,6 +42,6 @@ defmodule Isaac.Mixfile do
   #
   # Type `mix help deps` for more examples and options
   defp deps do
-    [{:isaac_c, github: "arianvp/isaac", tag: "0.0.3", app: false}]
+    [{:isaac_c, github: "arianvp/isaac", tag: "0.0.4", app: false}]
   end
 end

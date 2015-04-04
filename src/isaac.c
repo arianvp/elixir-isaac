@@ -9,7 +9,7 @@ init(ErlNifEnv *env, int argc, const ERL_NIF_TERM argv[])
 {
   struct randctx *ctx;
   int32_t *seed;
-  ERL_NIF_TERM head, tail;
+  ERL_NIF_TERM list, head, tail;
   int32_t seed_part;
   int i;
   ERL_NIF_TERM ret;
@@ -17,32 +17,35 @@ init(ErlNifEnv *env, int argc, const ERL_NIF_TERM argv[])
   ctx = enif_alloc_resource(RES_TYPE, sizeof(struct randctx));
   seed = enif_alloc_resource(RES_TYPE, sizeof(int32_t)*256);
 
+
   if (argc != 1)
   {
     return enif_make_badarg(env);
   }
 
-  if (!enif_is_list(env, argv[0]))
+  list = argv[0];
+
+  if (!enif_is_list(env, list))
   {
     return enif_make_badarg(env);
   }
 
-  head = argv[0];
   /* We traverse the linked list until nil or 255 elems visited.  */
-  for (i = 0; i < 256 && enif_get_list_cell(env, head, &head, &tail); i++)
-  {
 
+  for(i = 0; i < 256 && enif_get_list_cell(env,list, &head,&tail); i++, list  = tail)
+  {
     if(!enif_get_int(env, head, &seed_part))
     {
       return enif_make_badarg(env);
     }
     seed[i] = seed_part;
+
   }
 
   ret = enif_make_resource(env,ctx);
   enif_release_resource(ctx);
 
-  isaac_init(ctx, seed, i);
+  isaac_init(ctx, seed, i+1);
 
   return ret;
 }
