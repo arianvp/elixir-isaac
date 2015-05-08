@@ -3,7 +3,7 @@
 #include <string.h>
 
 static ErlNifResourceType *RES_TYPE;
-static ERL_NIF_TERM atom_ok;
+
 
 static ERL_NIF_TERM
 init(ErlNifEnv *env, int argc, const ERL_NIF_TERM argv[])
@@ -102,7 +102,6 @@ load(ErlNifEnv *env, void **priv, ERL_NIF_TERM info)
     return -1;
   }
 
-  atom_ok = enif_make_atom(env,"ok");
   
   return 0;
 }
