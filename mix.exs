@@ -51,7 +51,7 @@ defmodule Isaac.Mixfile do
     [
       files: ["src", "lib", "priv", "mix.exs", "README*", "LICENSE*"],
       contributors: ["Arian van Putten"],
-      licenses: ["GNU GPL V3.0"],
+      licenses: ["Public Domain"],
       links: %{"Github" => "https://github.com/arianvp/elixir-isaac"}
     ]
   end
